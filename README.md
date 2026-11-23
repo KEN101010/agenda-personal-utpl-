@@ -1,132 +1,142 @@
-# Agenda Personal de Contactos — Actividad B1
+**Universidad Técnica Particular de Loja (UTPL) — Desarrollo Web**
 
-Esta es la segunda versión de mi agenda de contactos. En la primera práctica podía registrarme, iniciar sesión y guardar, editar o eliminar contactos. En esta actividad añadí herramientas para encontrar los contactos más rápido y tenerlos mejor organizados, además de preparar el proyecto para publicarlo en Internet.
+Este proyecto es una continuación de la agenda de contactos que desarrollé en la práctica anterior. La primera versión permitía crear una cuenta y administrar contactos. Para esta actividad añadí opciones de búsqueda, ordenamiento, categorías y favoritos, con la idea de que la agenda sea más fácil de usar cuando se tienen varios contactos guardados.
 
-**Proyecto:** Desarrollo Web, UTPL  
-**Repositorio:** https://github.com/KEN101010/agenda-personal-utpl-entrega  
-**URL pública:** PENDIENTE: pegar aquí la dirección definitiva de Hostinger después de publicarlo y comprobar que funciona.
+También publiqué la aplicación en Hostinger para que se pueda abrir desde Internet.
 
-> Importante: todavía hay que configurar los datos de MySQL del hosting e importar el script. No se incluyen contraseñas ni una URL inventada.
+## Enlaces del proyecto
 
-## Qué puede hacer la agenda
+- **Aplicación web:** https://delicate-mistyrose-magpie-55.hostingersite.com/
+- **Panel de contactos:** https://delicate-mistyrose-magpie-55.hostingersite.com/dashboard.php
+- **Repositorio GitHub:** https://github.com/KEN101010/agenda-personal-utpl-
+- **Script SQL:** [`database.sql`](database.sql)
 
-- Crear una cuenta con nombre, correo y contraseña.
-- Iniciar y cerrar sesión para acceder a una agenda privada.
-- Añadir contactos con nombre, teléfono, correo electrónico y ciudad.
-- Editar y eliminar contactos, con confirmación antes de borrarlos.
-- **Buscar** por nombre, correo, ciudad o los tres campos al mismo tiempo.
-- **Ordenar** por nombre (A-Z o Z-A), ciudad (A-Z o Z-A) y fecha de creación (más recientes o antiguos).
-- **Organizar** cada contacto en Familia, Amigos, Trabajo, Universidad u Otro.
-- **Marcar favoritos**, quitar la marca y mostrar únicamente los favoritos.
-- Combinar búsqueda, categoría, favoritos y ordenamiento desde el mismo panel.
+> Para entrar al panel se necesita iniciar sesión. Si es la primera vez que se utiliza la aplicación, se puede crear una cuenta desde la pantalla de registro. Cada usuario administra sus propios contactos.
 
-Los contactos pertenecen a la cuenta que los creó. Un usuario no puede ver ni cambiar los de otra persona.
+## Funciones principales
 
-## Qué cambió con respecto a la primera versión
+La agenda permite registrarse, iniciar y cerrar sesión, agregar contactos con nombre, teléfono, correo y ciudad, editar sus datos y eliminarlos con una pantalla de confirmación.
 
-| Antes | Ahora |
+En esta segunda versión incorporé las **cuatro mejoras** propuestas en la actividad:
+
+| Mejora | ¿Cómo funciona? |
 | --- | --- |
-| La tabla mostraba los contactos ordenados por nombre. | Se puede elegir entre varias formas de ordenar. |
-| Había que recorrer la lista para encontrar a alguien. | Se puede buscar por nombre, correo o ciudad. |
-| Los contactos no tenían categorías. | Cada contacto se guarda en una de cinco categorías. |
-| No había una manera de destacar contactos. | Se pueden marcar como favoritos y filtrarlos. |
-| Base de datos con usuarios y contactos. | Se añadió `categorias` y los campos `categoria_id`, `favorito` y `fecha_creacion`. |
-| Instalación explicada para XAMPP. | También se documenta cómo subirla a Hostinger. |
+| **Búsqueda** | Permite encontrar contactos por nombre, correo electrónico o ciudad. También se puede buscar en todos los campos. |
+| **Ordenamiento** | Organiza los resultados por nombre o ciudad, de A a Z o de Z a A, y por fecha de creación, de más reciente a más antiguo o al revés. |
+| **Categorías** | Cada contacto pertenece a una categoría: **Familia, Amigos, Trabajo, Universidad u Otro**. También se puede filtrar el directorio por categoría. |
+| **Favoritos** | Se puede marcar o desmarcar un contacto como favorito y activar el filtro **Solo favoritos**. |
+
+Los filtros se pueden combinar. Por ejemplo, puedo buscar un nombre, seleccionar la categoría Universidad y ordenar los resultados sin tener que revisar toda la lista.
+
+## Diferencias con la primera práctica
+
+| Primera versión | Versión actual |
+| --- | --- |
+| Listado básico de contactos. | Listado con buscador y filtros. |
+| Orden fijo por nombre. | Ordenamiento configurable por nombre, ciudad y fecha. |
+| Sin clasificación de contactos. | Cinco categorías disponibles. |
+| Sin contactos destacados. | Opción de favoritos y filtro específico. |
+| Tablas de usuarios y contactos. | Nueva tabla `categorias` y campos adicionales en `contactos`. |
+| Uso local con XAMPP. | Instalación local y despliegue en Hostinger. |
 
 ## Tecnologías utilizadas
 
-- PHP 8.1 o superior para las páginas, la validación y las sesiones.
-- MySQL o MariaDB para guardar usuarios y contactos.
-- PDO y consultas preparadas para trabajar con la base de datos.
-- HTML5 y CSS3 para la interfaz adaptable a computadora y celular.
-- Apache y `.htaccess` para proteger los archivos internos.
-- Git y GitHub para mantener el código del proyecto.
+- **PHP:** registro, inicio de sesión, validaciones y operaciones con contactos.
+- **MySQL / MariaDB:** almacenamiento de usuarios, contactos y categorías.
+- **PDO:** conexión y consultas preparadas a la base de datos.
+- **HTML5 y CSS3:** estructura y diseño adaptable a celular y computadora.
+- **Apache:** servidor web para la ejecución de PHP.
+- **GitHub:** repositorio del código y la documentación.
+- **Hostinger:** alojamiento de la versión publicada.
 
-No hace falta instalar paquetes con Composer o npm. El diseño usa CSS y pequeños iconos SVG incluidos en el código.
-
-## Cómo instalarlo en XAMPP
-
-1. Instala XAMPP y enciende **Apache** y **MySQL** desde el panel.
-2. Copia los archivos del proyecto a `C:\xampp\htdocs\agenda-personal\`. Debe existir `C:\xampp\htdocs\agenda-personal\index.php`.
-3. Abre `http://localhost/phpmyadmin`, crea una base llamada `agenda_personal` con `utf8mb4` e impórtale `database.sql`.
-4. Revisa `config/database.php`: por defecto utiliza `127.0.0.1`, puerto `3306`, base `agenda_personal`, usuario `root` y contraseña vacía (configuración típica de XAMPP, no de un servidor público).
-5. Si tu instalación usa otros datos, copia `config/database.local.example.php` a `config/database.local.php` y cambia los valores.
-6. Abre `http://localhost/agenda-personal/`, crea tu cuenta y prueba el directorio.
-
-Si Apache usa un puerto distinto, ajústalo en el enlace. Si ya tienes datos de la primera versión, **no importes `database.sql` encima para actualizarlos**: haz una copia de seguridad y usa `migracion_desde_v1.sql` una sola vez sobre las tablas antiguas.
-
-## Cómo publicarlo en Hostinger
-
-La explicación paso a paso está en [GUIA_HOSTINGER.md](GUIA_HOSTINGER.md). Resumen:
-
-1. En Hostinger, crea un sitio **PHP/HTML** asociado a tu dominio o subdominio, con un plan que permita PHP y MySQL.
-2. En **Bases de datos**, crea una base MySQL y anota el nombre, usuario, contraseña y host que te muestra hPanel.
-3. En phpMyAdmin selecciona esa base e importa `database.sql` si es una instalación nueva.
-4. Sube los archivos PHP y las carpetas `assets`, `includes` y `config` a `public_html`. `index.php` debe estar directamente en esa carpeta.
-5. Dentro de `public_html/config`, duplica `database.local.example.php` como `database.local.php` y coloca los datos de MySQL del hosting. No subas ese archivo a GitHub.
-6. Abre la URL pública, registra una cuenta de prueba y comprueba las funcionalidades.
-7. Coloca la URL real aquí y agrega las capturas en `docs/capturas/` antes de entregar la práctica.
-
-**No confundas el usuario de Hostinger con el de MySQL:** en `database.local.php` se necesita el usuario de la base de datos, no el correo con el que entras al panel.
-
-## Estructura del proyecto
-
-```text
-assets/css/app.css                Estilos de la página
-config/database.php              Configuración local básica
-config/database.local.example.php Ejemplo para Hostinger
-includes/                        Funciones compartidas y formularios
-index.php                        Entrada de la aplicación
-registro.php                     Registro de usuarios
-login.php                        Inicio de sesión
-dashboard.php                    Listado, búsqueda, filtros y ordenamiento
-crear.php                        Nuevo contacto
-editar.php                       Edición de contacto
-favorito.php                     Marcar y quitar favoritos
-confirmar.php                    Confirmación de borrado
-eliminar.php                     Borrado de contacto
-logout.php                       Cierre de sesión
-database.sql                     Base de datos de instalación nueva
-migracion_desde_v1.sql           Actualización desde la primera práctica
-GUIA_HOSTINGER.md                Instrucciones de despliegue
-```
+No se necesitan dependencias de Composer ni paquetes de Node.js para ejecutar este proyecto.
 
 ## Capturas de pantalla
 
-Estas dos imágenes corresponden a las pantallas de acceso y registro de esta versión, renderizadas en una prueba local con PHP y el CSS del proyecto.
+**Inicio de sesión:** desde aquí se accede a la agenda con una cuenta existente.
 
 ![Pantalla de inicio de sesión](docs/capturas/login.png)
 
+**Registro:** formulario para crear una cuenta nueva.
+
 ![Pantalla de registro](docs/capturas/registro.png)
 
-**Pendiente tras el despliegue:** añade una captura real del directorio con un contacto de prueba y las nuevas opciones (buscador, categoría y favoritos). Puedes guardarla como `docs/capturas/directorio.png` y agregarla aquí con:
+El panel privado permite buscar y ordenar contactos, filtrarlos por categoría y marcar favoritos. Para verlo en funcionamiento, se puede acceder a la [aplicación publicada](https://delicate-mistyrose-magpie-55.hostingersite.com/) y registrar una cuenta de prueba.
 
-```markdown
-![Directorio de contactos con las mejoras](docs/capturas/directorio.png)
+## Base de datos
+
+El archivo [`database.sql`](database.sql) prepara una instalación nueva con estas tablas:
+
+- `usuarios`: información de las cuentas y contraseñas almacenadas como hashes.
+- `categorias`: las cinco categorías que se pueden asignar a los contactos.
+- `contactos`: datos de cada contacto, propietario, categoría, indicador de favorito y fecha de creación.
+
+Si ya existe una base de datos de la primera práctica y se quieren conservar sus registros, primero se debe hacer una copia de seguridad y utilizar [`migracion_desde_v1.sql`](migracion_desde_v1.sql) **en lugar de** instalar el esquema nuevo encima. La migración se ejecuta una sola vez.
+
+## Instalación local con XAMPP
+
+1. Descargar el repositorio desde **Code → Download ZIP** o clonarlo con Git.
+2. Copiar la carpeta del proyecto a `C:\xampp\htdocs\agenda-personal\`.
+3. Abrir XAMPP e iniciar los servicios **Apache** y **MySQL**.
+4. Entrar a `http://localhost/phpmyadmin`, crear una base de datos llamada `agenda_personal` e importar el archivo `database.sql` dentro de ella.
+5. Revisar `config/database.php`. La configuración inicial está pensada para XAMPP: servidor `127.0.0.1`, puerto `3306`, usuario `root` y contraseña vacía. Si la instalación utiliza otros datos, copiar `config/database.local.example.php` como `config/database.local.php` y ajustar esa copia.
+6. Abrir `http://localhost/agenda-personal/`, crear una cuenta y comenzar a registrar contactos.
+
+## Publicación en Hostinger
+
+La aplicación está publicada en el enlace indicado al principio del README. Para instalarla en otro alojamiento con PHP y MySQL, estos son los pasos principales:
+
+1. Crear una base de datos MySQL desde el panel del hosting.
+2. Entrar a phpMyAdmin, seleccionar esa base e importar `database.sql`.
+3. Subir los archivos PHP y las carpetas `assets`, `config` e `includes` a `public_html`. El archivo `index.php` debe quedar directamente dentro de esa carpeta.
+4. En `config`, crear `database.local.php` a partir de `database.local.example.php` y colocar el servidor, nombre de base de datos, usuario y contraseña proporcionados por el hosting.
+5. Abrir la dirección del sitio, registrar una cuenta y probar las funciones del directorio.
+
+En Hostinger, el nombre de la base y el usuario MySQL pueden llevar un prefijo. Es importante usar los nombres completos que aparecen en su panel.
+
+**Seguridad:** `config/database.local.php` contiene credenciales privadas y **no debe subirse a GitHub**. Tampoco deben publicarse archivos de diagnóstico ni contraseñas reales. Si se cambian las credenciales de MySQL, también se deben actualizar en la configuración privada del sitio.
+
+La explicación detallada del despliegue está en [`GUIA_HOSTINGER.md`](GUIA_HOSTINGER.md).
+
+## Archivos principales
+
+```text
+assets/css/app.css                  Estilos de la interfaz
+config/database.php                Configuración base de MySQL
+config/database.local.example.php  Ejemplo de configuración privada
+includes/                          Conexión, sesiones, formularios y vistas
+index.php                          Entrada de la aplicación
+registro.php                       Creación de cuentas
+login.php                          Inicio de sesión
+dashboard.php                      Directorio, búsqueda y filtros
+crear.php                          Registro de contactos
+editar.php                         Edición de contactos
+favorito.php                       Marcar o quitar favoritos
+confirmar.php                      Confirmación de eliminación
+eliminar.php                       Eliminación de contactos
+logout.php                         Cierre de sesión
+database.sql                       Esquema de base de datos
+migracion_desde_v1.sql             Migración desde la primera versión
+docs/capturas/                     Capturas de la aplicación
+GUIA_HOSTINGER.md                  Guía de publicación
+README.md                          Documentación del proyecto
 ```
 
-No se incluyen capturas de contactos simulados ni datos privados.
+## Comprobaciones recomendadas
 
-## Pruebas que hice / debo repetir al publicarlo
+Para revisar el funcionamiento de la aplicación se puede hacer una prueba rápida:
 
-Antes de entregar revisa lo siguiente usando datos de prueba:
+1. Registrar una cuenta, cerrar sesión e iniciar sesión nuevamente.
+2. Crear contactos de distintas categorías y editar los datos de uno.
+3. Buscar por nombre, correo y ciudad.
+4. Probar los seis tipos de ordenamiento.
+5. Marcar un contacto como favorito y activar **Solo favoritos**.
+6. Combinar búsqueda, categoría y favoritos; luego limpiar los filtros.
+7. Eliminar un contacto y comprobar que ya no aparece.
+8. Verificar que una segunda cuenta no puede ver los contactos de la primera.
 
-1. Registra una cuenta, cierra sesión y vuelve a entrar.
-2. Crea un contacto de cada categoría. Edita el correo y la ciudad de uno.
-3. Busca un contacto por nombre; después por correo y por ciudad.
-4. Cambia el orden por nombre, ciudad y fecha para comprobar los resultados.
-5. Marca dos contactos como favoritos, activa **Solo favoritos** y quita la marca a uno.
-6. Combina el filtro de categoría con la búsqueda y el ordenamiento.
-7. Borra un contacto y verifica que desaparece.
-8. Abre la agenda desde otro navegador o desde el teléfono.
-9. Con otra cuenta, comprueba que no aparecen los contactos de la primera.
-
-**Estado técnico del paquete:** los archivos PHP se revisaron sintácticamente. La prueba de conexión y de funcionamiento real en Hostinger queda pendiente hasta configurar el hosting y la base de datos.
-
-## Cuidados de seguridad
-
-Las contraseñas de usuarios se almacenan con `password_hash`, y en el inicio de sesión se comprueban con `password_verify`. Se usan sesiones con cookies `HttpOnly`, validación de formularios, tokens CSRF y consultas preparadas. Cada consulta de contactos verifica quién es el propietario. El archivo `config/database.local.php` está incluido en `.gitignore` y no debe publicarse en el repositorio.
+El proyecto utiliza consultas preparadas, validación de formularios, contraseñas con `password_hash()` y controles de sesión para separar los contactos de cada usuario.
 
 ---
 
-**Nota de entrega:** lo que el docente solicita al final es la **URL pública**, el **enlace de GitHub actualizado** y el **script SQL**. Recuerda poner esos tres enlaces o archivos en la plataforma de la materia.
+**Entrega académica:** actividad B1 de Desarrollo Web — UTPL. Los entregables son la URL pública de la aplicación, el repositorio actualizado y el script SQL.
